@@ -26,6 +26,18 @@ The system consists of:
 - SQL validation and execution layer
 - SQLite relational database
 
+## Database Setup
+
+The project uses an SQLite database with synthetic data for demonstration purposes.
+The database file is not included in the repository and must be generated locally.
+
+### Step 1: Create the database
+
+From the project root, run the database initialization script:
+
+```bash
+python backend/scripts/seed_db.py
+
 ## Running the Project
 
 ```bash
