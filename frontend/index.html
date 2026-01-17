@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Language DB Interface</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="container header">
+    <div>
+      <h1>Natural Language DB Interface</h1>
+      <p class="subtitle">
+        Ask questions in natural language. The system generates SQL, runs it on the database, and explains the result.
+      </p>
+    </div>
+    <div class="badge">Text-to-SQL</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <label for="question" class="label">Your question</label>
+      <textarea
+        id="question"
+        class="textarea"
+        placeholder='e.g., "Show the top 5 customers by total spending in 2024."'
+        rows="4"
+      ></textarea>
+
+      <div class="actions">
+        <button id="runBtn" class="btn primary">Run</button>
+        <button id="clearBtn" class="btn">Clear</button>
+
+        <div class="spacer"></div>
+
+        <label class="toggle">
+          <input id="mockToggle" type="checkbox" checked />
+          <span>Mock mode</span>
+        </label>
+      </div>
+
+      <p class="hint">
+        Tip: Start with “Show”, “List”, “Count”, “Average”, “Top N”, or “Group by month”.
+      </p>
+    </section>
+
+    <section id="status" class="status" aria-live="polite"></section>
+
+    <section id="output" class="grid hidden">
+      <div class="card">
+        <div class="card-title">
+          <h2>Generated SQL</h2>
+          <button id="copySqlBtn" class="btn small">Copy</button>
+        </div>
+        <pre class="code"><code id="sqlBlock"></code></pre>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2>Results</h2>
+          <span id="rowCount" class="pill"></span>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="resultsTable"></table>
+        </div>
+      </div>
+
+      <div class="card full">
+        <h2>Explanation</h2>
+        <p id="explanation" class="explanation"></p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Backend endpoint (later): <code>POST /api/query</code> →
+        <span class="muted">returns SQL + rows + explanation</span>
+      </p>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
